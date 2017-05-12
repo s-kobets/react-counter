@@ -18,6 +18,11 @@ class Counters extends Component {
             component={Counter}
             parent={this.props.parent}
           />
+          <Field
+            name="infant"
+            component={Counter}
+            parent={this.props.parent}
+          />
 
           <p>Total: {this.props.total}</p>
         </div>
@@ -30,23 +35,23 @@ const CountersForm = reduxForm({
   form: 'counters',
   initialValues,
   /* if children all less or equal parent */
-  // onChange(values) {
-  //   const {parent, children} = values
+  onChange(values) {
+    const {parent, infant} = values
 
-  //   if (parent < children) {
-  //     values.children = parent
-  //   }
-  // },
+    if (parent < infant) {
+      values.infant = parent
+    }
+  },
 })(Counters);
 
 const selector = formValueSelector('counters')
 
 const mapStateToProps = (state) => {
-  const {parent, children} = selector(state, 'parent', 'children')
+  const {parent, children, infant} = selector(state, 'parent', 'children', 'infant')
 
   return {
     parent,
-    total: parent + children,
+    total: parent + children + infant,
   }
 }
 

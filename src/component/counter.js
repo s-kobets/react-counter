@@ -13,7 +13,7 @@ class Counter extends Component {
         <span>
           {value}
         </span>
-        { ((name === 'children' && value !== parent) || (name !== 'children' && value !== 9)) &&
+        { ((name === 'infant' && value !== parent) || (name !== 'infant' && value !== 9)) &&
           <button onClick={this.increment}>+</button>
         }
       </div>
