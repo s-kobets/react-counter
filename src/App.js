@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Counters from './component/counters'
+import CounterSaga from './component/counterSaga'
 import { Provider } from 'react-redux';
 import store from './store'
 
@@ -22,6 +23,16 @@ class App extends Component {
           </ul>
 
           <Counters />
+
+          <p className="App-intro">
+            state control sagas
+          </p>
+          <div><strong>parent</strong></div>
+          <CounterSaga />
+          <div><strong>children</strong></div>
+          <CounterSaga />
+          <div><strong>infants</strong></div>
+          <CounterSaga />
         </div>
       </Provider>
     );
