@@ -27,11 +27,7 @@ class App extends Component {
           <p className="App-intro">
             state control sagas
           </p>
-          <div><strong>parent</strong></div>
-          <CounterSaga />
-          <div><strong>children</strong></div>
-          <CounterSaga />
-          <div><strong>infants</strong></div>
+          
           <CounterSaga />
         </div>
       </Provider>

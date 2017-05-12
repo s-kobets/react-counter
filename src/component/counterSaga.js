@@ -7,24 +7,36 @@ class CounterSaga extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.decrement.bind(this)}>-</button>
+                <div><strong>adults</strong></div>
+                <button onClick={this.decrement.bind(this, 'adults')}>-</button>
                 <span>
-                    {this.props.reducerCounter.counter}
+                    {this.props.reducerCounter.adults.value}
                 </span>
-                <button onClick={this.increment.bind(this)}>+</button>
+                <button onClick={this.increment.bind(this, 'adults')}>+</button>
+
+                <div><strong>childrens</strong></div>
+                <button onClick={this.decrement.bind(this, 'childrens')}>-</button>
+                <span>
+                    {this.props.reducerCounter.childrens.value}
+                </span>
+                <button onClick={this.increment.bind(this, 'childrens')}>+</button>
+
+                <div><strong>infants</strong></div>
+                <button onClick={this.decrement.bind(this, 'infants')}>-</button>
+                <span>
+                    {this.props.reducerCounter.infants.value}
+                </span>
+                <button onClick={this.increment.bind(this, 'infants')}>+</button>
             </div>
         )
     }
 
-    increment() {
-        this.props.actions.increment();
+    increment(type) {
+        this.props.actions.increment(type);
     }
 
-    decrement() {
-        const counter = this.props.reducerCounter.counter;
-        if (counter > 0) {
-            this.props.actions.decrement();
-        }
+    decrement(type) {
+        this.props.actions.decrement(type);
     }
 }
 
