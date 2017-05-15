@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class Counter extends Component {
   render() {
     const {input: { value, name }, parent} = this.props;
-
     return (
       <div>
         <div><strong>{name}</strong></div>

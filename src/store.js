@@ -8,7 +8,24 @@ function parent(state={}, action) {
 }
 
 const rootReducer = combineReducers({
-  form: formReducer,
+  form: formReducer.plugin({
+    counters: (state, action) => {
+      switch(action.type) {
+        case '@@redux-form/CHANGE':
+          const {parent, children, infant} = state.values
+          let total = parent + children + infant
+
+          if (parent < infant) {
+            state.values.infant = parent
+            total -= 1
+          }
+          state.values.total = total
+        return { ...state}
+        default:
+          return state
+      }
+    }
+  }),
   parent,
   reducerCounter,
 });
