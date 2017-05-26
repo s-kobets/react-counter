@@ -1,39 +1,23 @@
 const initialState = {
-    adults: {
-        value: 1,
-        isMax: false,
-        isMin: true,
-    },
-    childrens: {
-        value: 0,
-        isMax: false,
-        isMin: true,
-    },
-    infants: {
-        value: 0,
-        isMax: false,
-        isMin: true,
-    },
-    total: 0
+  parent: 1,
+  children: 0,
+  total: 1,
 }
 
 export function reducerCounter(state=initialState, action) {
   let typeObj;
   const type = action.amount;
-  if (type === 'adults') typeObj = state.adults;
-  if (type === 'childrens') typeObj = state.childrens;
-  if (type === 'infants') typeObj = state.infants;
+  if (type === 'parent') typeObj = state.parent;
+  if (type === 'children') typeObj = state.children;
   switch (action.type) {
     case 'Increment':
-      state[type] = {...state[type], value: typeObj.value + 1, ...state }
+      state[type] = typeObj + 1
+      state.total += 1
       return {...state};
     case 'Decrement':
-      state[type] = {...state[type], value: typeObj.value - 1, ...state }
+      state[type] = typeObj - 1
+      state.total -= 1
       return {...state};
-    case 'IsMax':
-      return Object.assign({}, state, {counter: state.counter - action.amount});
-    case 'IsMin':
-      return Object.assign({}, state, {counter: state.counter - action.amount});
     default:
       return state;
   }

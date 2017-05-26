@@ -8,35 +8,31 @@ class CounterSaga extends Component {
         return (
             <div>
                 <div><strong>adults</strong></div>
-                <button onClick={this.decrement.bind(this, 'adults')}>-</button>
+                {}
+                <button onClick={this.decrement.bind(this, 'parent')}>-</button>
                 <span>
-                    {this.props.reducerCounter.adults.value}
+                    {this.props.reducerCounter.parent}
                 </span>
-                <button onClick={this.increment.bind(this, 'adults')}>+</button>
+                <button onClick={this.increment.bind(this, 'parent')}>+</button>
 
                 <div><strong>childrens</strong></div>
-                <button onClick={this.decrement.bind(this, 'childrens')}>-</button>
+                <button onClick={this.decrement.bind(this, 'children')}>-</button>
                 <span>
-                    {this.props.reducerCounter.childrens.value}
+                    {this.props.reducerCounter.children}
                 </span>
-                <button onClick={this.increment.bind(this, 'childrens')}>+</button>
+                <button onClick={this.increment.bind(this, 'children')}>+</button>
 
-                <div><strong>infants</strong></div>
-                <button onClick={this.decrement.bind(this, 'infants')}>-</button>
-                <span>
-                    {this.props.reducerCounter.infants.value}
-                </span>
-                <button onClick={this.increment.bind(this, 'infants')}>+</button>
+                <p>total: {this.props.reducerCounter.total}</p>
             </div>
         )
     }
 
-    increment(type) {
-        this.props.actions.increment(type);
+    increment = (type) => {
+        this.props.actions.increment(type)
     }
 
-    decrement(type) {
-        this.props.actions.decrement(type);
+    decrement = (type) => {
+        this.props.actions.decrement(type)
     }
 }
 
