@@ -5,24 +5,31 @@ import { actions as storeActions } from './ducks'
 
 class CounterSaga extends Component {
     render() {
+        const {reducerCounter: {parent, children, total}} = this.props
+
         return (
             <div>
-                <div><strong>adults</strong></div>
-                {}
-                <button onClick={this.decrement.bind(this, 'parent')}>-</button>
+                <div><strong>parents</strong></div>
+                { (parent > 1) &&
+                    <button onClick={this.decrement.bind(this, 'parent')}>-</button>
+                }
                 <span>
-                    {this.props.reducerCounter.parent}
+                    {parent}
                 </span>
-                <button onClick={this.increment.bind(this, 'parent')}>+</button>
-
+                { (parent < 9) &&
+                  <button onClick={this.increment.bind(this, 'parent')}>+</button>
+                }
                 <div><strong>childrens</strong></div>
-                <button onClick={this.decrement.bind(this, 'children')}>-</button>
+                { (children > 0) &&
+                    <button onClick={this.decrement.bind(this, 'children')}>-</button>
+                }
                 <span>
-                    {this.props.reducerCounter.children}
+                    {children}
                 </span>
-                <button onClick={this.increment.bind(this, 'children')}>+</button>
-
-                <p>total: {this.props.reducerCounter.total}</p>
+                { (parent > children) &&
+                  <button onClick={this.increment.bind(this, 'children')}>+</button>
+                }
+                <p>Total: {total}</p>
             </div>
         )
     }

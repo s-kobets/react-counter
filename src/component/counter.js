@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class Counter extends Component {
   render() {
     const {input: { value, name }, parent} = this.props;
+
     return (
       <div>
         <div><strong>{name}</strong></div>
@@ -12,7 +13,7 @@ class Counter extends Component {
         <span>
           {value}
         </span>
-        { ((name === 'infant' && value !== parent) || (name !== 'infant' && value !== 9)) &&
+        { ((name === 'children' && value < parent) || (name !== 'children' && value !== 9)) &&
           <button onClick={this.increment}>+</button>
         }
       </div>

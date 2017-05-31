@@ -1,32 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 import initialValues from './initialValues'
 import Counter from './counter'
 
 class Counters extends Component {
   render() {
-    console.log(this.props.parent)
+    const {parent, total} = this.props
+
     return (
       <div>
         <Field
           name="parent"
           component={Counter}
-          parent={this.props.parent}
         />
-          <Field
-            name="children"
-            component={Counter}
-            parent={this.props.parent}
-          />
-          <Field
-            name="infant"
-            component={Counter}
-            parent={this.props.parent}
-          />
+        <Field
+          name="children"
+          component={Counter}
+          parent={parent}
+        />
 
-          <p>Total: {this.props.values && this.props.values.total}</p>
-        </div>
+        <p>Total: {total}</p>
+      </div>
     )
   }
 }
@@ -37,4 +32,15 @@ const CountersForm = reduxForm({
   initialValues,
 })(Counters);
 
-export default connect()(CountersForm);
+const selector = formValueSelector('counters')
+
+const mapStateToProps = (state) => {
+  const parent = selector(state, 'parent')
+  const total = selector(state, 'total')
+
+  return {
+     parent,
+     total
+  }
+}
+export default connect(mapStateToProps)(CountersForm);
